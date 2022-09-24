@@ -46,19 +46,11 @@ There are three types of packages. They are all coded in the same way but differ
 - **stinger:** used for stinger transitions
 
 ## Developing a Graphics Overlay Package
-1. Open a terminal and clone the template repos replacing `[name-of-your-package]`
+1. Open a terminal window
 
-```sh
-git clone git:github.com/jhsware/bla.git [name-of-your-package]
-```
+2. Go to the project root folder
 
-2. Enter the newly created folder and install the development environment
-
-```sh
-cd [name-of-your-package]; npm i
-```
-
-3. Start the development preview page
+3. Start the development server
 
 ```sh
 npm run dev
@@ -66,8 +58,10 @@ npm run dev
 
 You can now open a webpage at the address shown in the terminal to see the progress of your development. It is recomended to use Safari for preview, but both Chrome and Edge will work if nothing else is available.
 
+2. Start coding!
+
 ### Debugging
-To debug your code, use the browser debugger. You might find that using Chrome gives you a nicer debugging experience, but it is recommended that you do most of the development using Safari for preview. This way you won't get any surprising flickers that might take some time to figure out how to solve.
+To debug your code, use the browser debugger. You might find that using Chrome gives you a nicer debugging experience, but it is recommended that you do most of the development using Safari for preview. This way you won't get any surprising flickers that might take some time to troubleshoot.
 
 ### Debugging in Streamix Panel
 Unfortunately you can't debug the running code once imported to the Streamix Panel application. If something fails you need to figure it out in the development environment and then re-import the package to overwrite the old code.
@@ -99,9 +93,9 @@ We recommend that you use your package name as a base CSS-class to avoid conflic
 **You need to add all of these classes to your code.**
 
 #### Component.tsx
-This is the Typescript source file. The .tsx extension allows you to write [JSX for Typescript](https://www.typescriptlang.org/docs/handbook/jsx.html). The code is written using the [library Inferno.js](https://www.infernojs.org/). Inferno.js is API-compatible with original React using stateless function components and stateful class components.
+This is the Typescript source file. The .tsx extension allows you to write [JSX in Typescript](https://www.typescriptlang.org/docs/handbook/jsx.html). The code is written using the [library Inferno.js](https://www.infernojs.org/). Inferno.js is API-compatible with original React using stateless function components and stateful class components. Inferno does not support React hooks.
 
-Animations can be implemented any way you want, but you get the best performance if you use CSS-animations with [inferno-animation](https://www.infernojs.org/docs/api/inferno-animation).
+Animations can be implemented any way you want, but you get the best performance if you use CSS-animations with [inferno-animation](https://www.infernojs.org/docs/api/inferno-animation). This package coordinates animations so they run as smooth as possible.
 
 This file should have a single default export which is the outer most container of your code. You should also make sure you only render the content of this when this component is passed `{ isStaged: true }`. Everything else is optional, check this code example:
 
@@ -119,8 +113,8 @@ Note that you are passed four properties:
 - **isStaged:** true when the component should be visible
 - **data:** the form data set in Stremix Panel if you have any
 
-#### streamix.json
-You need to configure your package for Streamix Panel. Description of fields below example:
+#### streamix-package.json
+When you create you package using the creation script the streamix-package.json file is configured for you:
 
 ```json
 {
@@ -148,7 +142,7 @@ We currently support the folowing form fields:
 - **video:** allow selecting the path to a video file
 - **button:** add buttons that can trigger events in your component
 
-The key of the field matches the key of the data sent to your component as the property `data`. It would be the quivalen of:
+The key of the field matches the key of the data sent to your component as the property `data`. If you have a form field with the key **name** you would access it like this:
 
 ```jsx
 export default function Container({id, isStaged, data}) {
@@ -160,7 +154,7 @@ export default function Container({id, isStaged, data}) {
 }
 ```
 
-Example of form fields (added to the form property object in streamix_package.json):
+Example of form fields (add these to the form property object in streamix_package.json):
 
 ```json
 {
@@ -176,8 +170,8 @@ Example of form fields (added to the form property object in streamix_package.js
     "type": "video",
     "default": "video.mp4"
   },
-  "singleShot": {
-    "label": "Single Shot",
+  "toggle": {
+    "label": "Toggle Highlight",
     "type": "button"
   }
 }
@@ -185,14 +179,34 @@ Example of form fields (added to the form property object in streamix_package.js
 Buttons send a pulse to your component by changing state `false -> true -> false`. To act on the leading edge of this pulse you create a class component and implement the `componentDidUpdate` method like this:
 
 ```jsx
+class MyComponent {
+  state = {
+    highlightGraphics: false
+  }
+
   componentDidUpdate(lastProps) {
     const prevData = lastProps.data;
     const { data } = this.props;
 
-    if (data.singleShot && !prevData.singleShot) {
-      this._singleShotButtonWasPressed();
+    // Listen for clicks on button named "toggle"
+    if (data.toggle && !prevData.toggle) {
+      this._toggleButtonWasPressed();
     }
   }
+
+  _toggleButtonWasPressed() {
+    // Toggle the made up boolean state property highlightGraphics
+    this.setState({
+      highlightGraphics: !this.state.highlightGraphics
+    })
+  }
+
+  render(props, state) {
+    const { highlightGraphics } = state;
+
+    return <div className={highlightGraphics ? 'highlighted' : ''}>More stuff here...</div>
+  }
+}
 ```
 
 ### Build Package for Distribution
@@ -209,7 +223,7 @@ A fullscreen graphics overlay takes over the entire screen. This allows you to u
 
 Typical use cases are video playback, an embedded online presentation or a fullscreen sports scoreboard.
 
-It is up to you to make sure the graphics covers the entire viewing area. Then att he following property to your `streamix_package.json` configuration:
+It is up to you to make sure the graphics covers the entire viewing area. If you didn't choose "Fullscreen Graphics Overlay" when creating your package you need to set the following property in your `streamix_package.json` configuration:
 
 ```json
 {
@@ -241,4 +255,4 @@ The stinger transition is built in the same way as an ordinary graphics overlay,
 - **transitionIn:** the duration of the animation until the entire screen is filled
 - **transitionOut:** the duration of the animation until stinger is completely gone
 
-The `transitionIn` sets the timining of the cut between scenes so you probably want keep the screen covered 3-500ms before and after this to avoid visual glitches if the timing is slightly off.
+The `transitionIn` sets the timining of the cut between scenes so you probably want keep the screen covered 3-500ms before and after this to avoid visual glitches if the timing is slightly off. By extending `transitionIn` you can keep the fullscreen state in view as long as you wish.
