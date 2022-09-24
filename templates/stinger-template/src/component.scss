@@ -1,0 +1,202 @@
+.[name-of-your-package] {
+  --left: 1vw;
+  --top: 1vw;
+  --bottom: 1vw;
+
+  .Background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .Plate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0162af;
+  }
+
+  .Bar_1 {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    width: 100rem;
+    height: 4rem;
+    background-color: orange;
+    transform: translateX(100%);
+  }
+  .Bar_2 {
+    position: absolute;
+    top: 12rem;
+    left: 0;
+    width: 100rem;
+    height: 3rem;
+    background-color: white;
+    transform: translateX(-100%);
+  }
+  .Bar_3 {
+    position: absolute;
+    top: 18rem;
+    left: 0;
+    width: 100rem;
+    height: 4rem;
+    background-color: orange;
+    transform: translateX(100%);
+  }
+  .Bar_4 {
+    position: absolute;
+    top: 26rem;
+    left: 0;
+    width: 100rem;
+    height: 6rem;
+    background-color: white;
+    transform: translateX(-100%);
+  }
+  .Bar_5 {
+    position: absolute;
+    top: 37rem;
+    left: 0;
+    width: 100rem;
+    height: 4rem;
+    background-color: orange;
+    transform: translateX(100%);
+  }
+  
+  .Title {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    border-radius: 0.25rem;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center;
+    color: white;
+    text-shadow: 1px 1px black;
+
+
+    .inner {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-sizing: border-box;
+      // background: #000;
+      align-items: center;
+      padding: 0.5rem 1.5rem 0.3rem;
+      opacity: 1;
+    }
+
+    .name {
+      font-size: 5rem;
+      text-align: center;
+      white-space: nowrap;
+      margin-bottom: -2rem;
+    }
+    .title {
+      font-size: 3rem;
+      font-weight: 100;
+      text-transform: uppercase;
+      text-align: center;
+      padding-top: 0.3em;
+    }
+  }
+
+  // *** Animations ***
+  .BackgroundAnim {
+    &-enter {
+      transform: translateY(-1px);
+      .Plate {
+        transform: translateX(-100%);
+      }
+      .Bar_1, .Bar_3, .Bar_5 {
+        transform: translateX(-100%);
+      }
+      .Bar_2, .Bar_4 {
+        transform: translateX(100%);
+      }
+    }
+    
+    &-leave-end { // Start and end with element collapsed and fully transparent
+      transform: translateY(-1px);
+      .Plate {
+        transform: translateX(100%);
+      }
+      .Bar_1, .Bar_3, .Bar_5 {
+        transform: translateX(-100%);
+      }
+      .Bar_2, .Bar_4 {
+        transform: translateX(100%);
+      }
+    }
+
+    &-enter-active {
+      transition: transform 1.5s;
+      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
+      .Plate {
+        transition: all 0.5s ease-in-out 0.2s;
+      }
+      .Bar_1, .Bar_2, .Bar_3, .Bar_4, .Bar_5 {
+        transition: all 1.0s ease-in-out;
+      }
+    }
+
+    &-leave-active {
+      transition: transform 1.0s;
+      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
+
+      .Plate {
+        transition: all 0.5s ease-in-out 0.5s;
+      }
+      .Bar_1, .Bar_2, .Bar_3, .Bar_4, .Bar_5 {
+        transition: all 1.0s ease-in-out;
+      }
+    }
+
+    &-enter-end,
+    &-leave { // Animate to and from full height with full opacity
+      transform: translateY(0);
+    }
+  }
+
+  .TitleAnim {
+    &-enter,
+    &-leave-end { // Start and end with element collapsed and fully transparent
+      .inner {
+        opacity: 0;
+      }
+    }
+
+    &-enter-active {
+      transition: all 1s;
+      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
+
+      .inner {
+        transition: all 0.5s ease-out 0.5s;
+      }
+    }
+
+    &-leave-active {
+      transition: all 1s;
+      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
+
+      .inner {
+        transition: all 0.5s ease-in;
+      }
+    }
+
+    &-enter-end,
+    &-leave { // Animate to and from full height with full opacity
+      .inner {
+        opacity: 1;
+      }
+    }
+  }
+}

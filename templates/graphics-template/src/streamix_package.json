@@ -1,0 +1,17 @@
+{
+  "__type__": "GraphicsPackage",
+  "__version__": "1",
+  "name": "[name-of-your-package]",
+  "displayName": "[name-in-app]",
+  "description": "[description-in-app]",
+  "fullscreen": false,
+  "form": {
+    "name": {
+      "label": "Name",
+      "type": "string",
+      "min": 0,
+      "max": 40,
+      "default": "Mr. Jones"
+    }
+  }
+}

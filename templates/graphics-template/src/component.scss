@@ -1,0 +1,90 @@
+.[name-of-your-package] {
+  --horiz: 1vw;
+  --vert: 1vw;
+  --bg: #0162af;
+  --fg: white;
+  --font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  .NameTag {
+    --translate: translate(0%, 0%);
+
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    position: absolute;
+    left: var(--horiz);
+    bottom: var(--vert);
+
+    font-family: var(--font);
+
+    border-radius: 0.25rem;
+    transform-origin: bottom left;
+    transform: var(--translate) scale(1);
+    transform-origin: center;
+    background-color: var(var(--bg));
+
+    clip-path: polygon(0% 0%, 100% 0%, 120% 100%, 0% 100%);
+
+    .inner {
+      display: flex;
+      position: relative;
+      box-sizing: border-box;
+      // background: #000;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 0.5rem 1.5rem 0.3rem;
+      clip-path: polygon(0% 0%, 120% 0%, 100% 100%, 0% 100%);
+    }
+
+    .name {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      text-align: center;
+      white-space: nowrap;
+      color: var(--fg);
+    }
+  }
+
+
+  // *** Animations ***
+  .NameTagAnim {
+    &-enter,
+    &-leave-end { // Start and end with element collapsed and fully transparent
+      // opacity: 0.3; /* Can't use transparency with single GFX-feed */
+      // transform: translateX(calc(-100% - var(--horiz)));
+      clip-path: polygon(-1% 0%, -20% 0%, 0% 100%, -1% 100%);
+      
+      .inner {
+        opacity: 0;
+      }
+    }
+
+    &-enter-active {
+      transition: all 1.2s ease-in;
+      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
+
+      .inner {
+        transition: all 0.7s ease-out 0.5s;
+      }
+    }
+
+    &-leave-active {
+      transition: all 1.5s ease-out;
+      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
+
+      .inner {
+        transition: all .5s ease-out;
+      }
+    }
+
+    &-enter-end,
+    &-leave { // Animate to and from full height with full opacity
+      transform: translate(0, 0);
+      opacity: 1;
+
+      .inner {
+        opacity: 1;
+      }
+    }
+  }
+}

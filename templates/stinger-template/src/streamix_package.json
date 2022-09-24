@@ -1,0 +1,25 @@
+{
+  "__type__": "StingerTransitionPackage",
+  "__version__": "1",
+  "name": "stinger-poc",
+  "displayName": "Stinger PoC",
+  "description": "Perform a stinger transition.",
+  "transitionIn": 1500,
+  "transitionOut": 1500,
+  "form": {
+    "name": {
+      "label": "Title",
+      "type": "string",
+      "min": 0,
+      "max": 40,
+      "default": "The Title of the Scene"
+    },
+    "title": {
+      "label": "Subtitle",
+      "type": "string",
+      "min": 0,
+      "max": 50,
+      "default": "Episode 12"
+    }
+  }
+}
