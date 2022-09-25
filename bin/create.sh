@@ -5,7 +5,7 @@ NC='\033[0m'
 
 TEMPLATE_URL="https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/release"
 TEMPLATE_NAME= # Assigned further down
-FULLSCREEN_OVERLAY= # Assigned further down
+FULLSCREEN_OVERLAY="no"
 declare -a REQUIRED_CMDS=(
   "curl"
   "tar"
@@ -41,7 +41,7 @@ do
             ;;
         "Fullscreen Graphics Overlay")
             TEMPLATE_NAME="graphicsOverlayTemplate.tgz"
-            FULLSCREEN_OVERLAY="true"
+            FULLSCREEN_OVERLAY="yes"
             break
             ;;
         "Stinger Transition")
@@ -84,7 +84,7 @@ sed -i "" "s/\[name-of-your-package\]/$identifier/g" package.json src/streamix_p
 sed -i "" "s/\[name-in-app\]/$name/g" src/streamix_package.json
 sed -i "" "s/\[description-in-app\]/$desc/g" src/streamix_package.json
 
-if [ -z $FULLSCREEN_OVERLAY ]
+if [ $FULLSCREEN_OVERLAY = "yes" ]
 then
   echo "Fullscreen"
   sed -i "" "s/\"fullscreen\": false/\"fullscreen\": true/g" src/streamix_package.json

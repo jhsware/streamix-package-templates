@@ -12,7 +12,7 @@ Details about development is provided in the README.md of the created package.
 1. Run the package creation script
 
 ```sh
-source <(curl -s https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/bin/create.sh)
+source <(curl -s https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/bin/install.sh) && ./create.sh
 ```
 
 2. Follow the instructions
