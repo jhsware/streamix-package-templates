@@ -67,7 +67,7 @@ To debug your code, use the browser debugger. You might find that using Chrome g
 Unfortunately you can't debug the running code once imported to the Streamix Panel application. If something fails you need to figure it out in the development environment and then re-import the package to overwrite the old code.
 
 ### Developing Your Package
-Take a look at the [sample packages](https://github.com/jhsware/...) for coding by example.
+Take a look at the (to be added) [sample packages](https://github.com/jhsware/TODO_FIX_LINK) for coding by example.
 
 The most basic implementation consists of three files found in the `src/` directory:
 - component.scss
