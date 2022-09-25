@@ -66,6 +66,12 @@ read -p "Name in app i.e. 'My Package': " name
 read -p "Description in app i.e. 'Description of effect.': " desc
 echo
 
+if [ -d $identifier ]
+then
+  echo "${RED}ERROR!${NC} A directory with name $identifier exists. Remove or choose different name."
+  exit 1
+fi
+
 # 2. Download and unpack template .tgz
 echo "Downloading template and creating project..."
 mkdir $identifier
@@ -78,7 +84,7 @@ sed -i "" "s/\[name-of-your-package\]/$identifier/g" package.json src/streamix_p
 sed -i "" "s/\[name-in-app\]/$name/g" src/streamix_package.json
 sed -i "" "s/\[description-in-app\]/$desc/g" src/streamix_package.json
 
-if [ $FULLSCREEN_OVERLAY = "true" ]
+if [ -z $FULLSCREEN_OVERLAY ]
 then
   echo "Fullscreen"
   sed -i "" "s/\"fullscreen\": false/\"fullscreen\": true/g" src/streamix_package.json
