@@ -2,6 +2,7 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
+_mute_=/dev/null
 
 TEMPLATE_URL="https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/release"
 TEMPLATE_NAME= # Assigned further down
@@ -98,7 +99,7 @@ echo "Install npm packages..."
 if hash git 2>/dev/null
 then
   echo "Initialising as Git repository and committing files"
-  (cd $identifier && git init --quiet && git add --all --quiet && git commit -m "initial commit" --quiet)
+  (cd $identifier && git init &>$_mute_ && git add --all &>$_mute_ && git commit -m "initial commit" &>$_mute_)
 fi
 
 # 5. Instructions on how to proceed
