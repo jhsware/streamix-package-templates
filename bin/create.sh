@@ -3,10 +3,15 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-REQUIRED_CMDS="curl tar sed npm"
 TEMPLATE_URL="https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/release"
 TEMPLATE_NAME= # Assigned further down
 FULLSCREEN_OVERLAY= # Assigned further down
+declare -a REQUIRED_CMDS=(
+  "curl"
+  "tar"
+  "sed"
+  "npm"
+)
 
 
 echo "*******************************************"
@@ -14,7 +19,7 @@ echo "** Create your package (ctrl-c to abort) **"
 echo "*******************************************"
 
 # 0. Check that we have all available CLI apps for this script to work (tar, sed, npm)
-for cmd in $REQUIRED_CMDS
+for cmd in "${REQUIRED_CMDS[@]}"
 do
   if hash $cmd 2>/dev/null; then
     printf ''
