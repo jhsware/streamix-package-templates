@@ -68,6 +68,7 @@ echo
 
 # 2. Download and unpack template .tgz
 echo "Downloading template and creating project..."
+mkdir $identifier
 curl -L  $TEMPLATE_URL/$TEMPLATE_NAME | tar xvz -C $identifier
 
 # 3. Update config files

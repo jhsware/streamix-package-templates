@@ -28,7 +28,7 @@ for val in "${TEMPLATES[@]}"; do
     # echo "- $src $dest"
     echo "${GREEN}$src:${NC} Releasing template as release/$dest"
     cp docs/*.md templates/$src
-    tar -cvzf release/$dest templates/$src
+    (cd templates/$src && tar -cvzf ../../release/$dest ./)
     rm templates/$src/*.md
 done
 
