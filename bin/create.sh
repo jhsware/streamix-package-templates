@@ -84,7 +84,7 @@ sed -i "" "s/\[name-of-your-package\]/$identifier/g" package.json src/streamix_p
 sed -i "" "s/\[name-in-app\]/$name/g" src/streamix_package.json
 sed -i "" "s/\[description-in-app\]/$desc/g" src/streamix_package.json
 
-if [ $FULLSCREEN_OVERLAY = "yes" ]
+if [ "$FULLSCREEN_OVERLAY" = "yes" ]
 then
   echo "Fullscreen"
   sed -i "" "s/\"fullscreen\": false/\"fullscreen\": true/g" src/streamix_package.json
