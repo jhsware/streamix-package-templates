@@ -5,5 +5,5 @@ NC='\033[0m'
 
 curl -s https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/bin/create.sh -o create.sh
 chmod 755 create.sh
-echo "${GREEN}DONE! Template package creator installed!${NC}"
+echo -e "${GREEN}DONE! Template package creator installed!${NC}"
 echo "Run ./create.sh"

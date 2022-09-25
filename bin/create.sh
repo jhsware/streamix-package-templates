@@ -68,14 +68,14 @@ echo
 
 if [ -d $identifier ]
 then
-  echo "${RED}ERROR!${NC} A directory with name $identifier exists. Remove or choose different name."
+  echo -e "${RED}ERROR!${NC} A directory with name $identifier exists. Remove or choose different name."
   exit 1
 fi
 
 # 2. Download and unpack template .tgz
 echo "Downloading template and creating project..."
 mkdir $identifier
-curl -L  $TEMPLATE_URL/$TEMPLATE_NAME | tar xvz -C $identifier
+curl -s -L  $TEMPLATE_URL/$TEMPLATE_NAME | tar xvz -C $identifier
 
 # 3. Update config files
 echo "Updating config files..."
@@ -98,12 +98,12 @@ echo "Install npm packages..."
 if hash git 2>/dev/null
 then
   echo "Initialising as Git repository and committing files"
-  (cd $identifier && git init && git add --all && git commit -m "initial commit")
+  (cd $identifier && git init --quiet && git add --all --quiet && git commit -m "initial commit" --quiet)
 fi
 
 # 5. Instructions on how to proceed
 echo
-echo "${GREEN}DONE! Open the files in $identifier/src/ and start coding!${NC}"
+echo -e "${GREEN}DONE! Open the files in $identifier/src/ and start coding!${NC}"
 echo
 echo "Documentation can be found in $identifier/README.md."
 echo "To start the development server, use 'npm run dev'."
