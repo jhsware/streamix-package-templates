@@ -3,10 +3,10 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-TEMPLATE_URL="https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/release"
-TEMPLATE_NAME=
-FULLSCREEN_OVERLAY=
 REQUIRED_CMDS="curl tar sed npm"
+TEMPLATE_URL="https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/release"
+TEMPLATE_NAME= # Assigned further down
+FULLSCREEN_OVERLAY= # Assigned further down
 
 
 echo "*******************************************"
