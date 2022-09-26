@@ -18,3 +18,4 @@ source <(curl -s https://raw.githubusercontent.com/jhsware/streamix-package-temp
 2. Follow the instructions
 
 3. Start coding!
+
