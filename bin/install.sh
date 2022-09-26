@@ -11,4 +11,4 @@ fi
 curl -s https://raw.githubusercontent.com/jhsware/streamix-package-templates/master/bin/create.sh -o create.sh
 chmod 755 create.sh
 echo -e "${GREEN}DONE! Template package creator installed!${NC}"
-echo "Run ./create.sh"
+echo "Now run ./create.sh"
