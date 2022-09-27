@@ -2,6 +2,14 @@
   --left: 1vw;
   --top: 1vw;
   --bottom: 1vw;
+  --bg: #0162af; // main background color
+  --fg: white; // Text color
+  // Color of bars:
+  --bg_Bar_1: orange;
+  --bg_Bar_2: white;
+  --bg_Bar_3: orange;
+  --bg_Bar_4: white;
+  --bg_Bar_5: orange;
 
   .Background {
     position: absolute;
@@ -17,7 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #0162af;
+    background-color: var(--bg);
   }
 
   .Bar_1 {
@@ -26,7 +34,7 @@
     left: 0;
     width: 100rem;
     height: 4rem;
-    background-color: orange;
+    background-color: var(--bg_Bar_1);
     transform: translateX(100%);
   }
   .Bar_2 {
@@ -35,7 +43,7 @@
     left: 0;
     width: 100rem;
     height: 3rem;
-    background-color: white;
+    background-color: var(--bg_Bar_2);
     transform: translateX(-100%);
   }
   .Bar_3 {
@@ -44,7 +52,7 @@
     left: 0;
     width: 100rem;
     height: 4rem;
-    background-color: orange;
+    background-color: var(--bg_Bar_3);
     transform: translateX(100%);
   }
   .Bar_4 {
@@ -53,7 +61,7 @@
     left: 0;
     width: 100rem;
     height: 6rem;
-    background-color: white;
+    background-color: var(--bg_Bar_4);
     transform: translateX(-100%);
   }
   .Bar_5 {
@@ -62,7 +70,7 @@
     left: 0;
     width: 100rem;
     height: 4rem;
-    background-color: orange;
+    background-color: var(--bg_Bar_5);
     transform: translateX(100%);
   }
   
@@ -79,7 +87,7 @@
     border-radius: 0.25rem;
     transform: translate(-50%, -50%) scale(1);
     transform-origin: center;
-    color: white;
+    color: var(--fg);
     text-shadow: 1px 1px black;
 
 
