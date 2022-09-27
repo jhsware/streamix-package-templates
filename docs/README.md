@@ -46,7 +46,7 @@ There are three types of packages. They are all coded in the same way but differ
 - **stinger:** used for stinger transitions
 
 ## Developing a Graphics Overlay Package
-1. Open a terminal window
+1. Open a terminal window and create a package using [these instructions](https://github.com/jhsware/streamix-package-templates)
 
 2. Go to the project root folder
 
@@ -58,7 +58,7 @@ npm run dev
 
 You can now open a webpage at the address shown in the terminal to see the progress of your development. It is recomended to use Safari for preview, but both Chrome and Edge will work if nothing else is available.
 
-2. Start coding!
+4. Start coding!
 
 ### Debugging
 To debug your code, use the browser debugger. You might find that using Chrome gives you a nicer debugging experience, but it is recommended that you do most of the development using Safari for preview. This way you won't get any surprising flickers that might take some time to troubleshoot.
