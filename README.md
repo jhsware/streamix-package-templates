@@ -32,3 +32,6 @@ source <(curl -s https://raw.githubusercontent.com/jhsware/streamix-package-temp
 
 3. Start coding!
 
+
+## Examples
+You can view and download example code from: https://github.com/jhsware/streamix-package-examples
