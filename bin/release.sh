@@ -33,4 +33,4 @@ for val in "${TEMPLATES[@]}"; do
 done
 
 echo "${GREEN}DONE!${NC}"
-echo
+echo "To complete the release commit and push to master."
