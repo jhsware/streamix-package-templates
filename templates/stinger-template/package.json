@@ -41,8 +41,7 @@
   },
   "scripts": {
     "dev": "parcel --target package",
-    "build:deps": "(cd ../..; npm run dev:clean)",
-    "build": "rollup --config ./rollup.config.js"
+    "build": "rollup --config _streamixSrc/rollup.config.js"
   },
   "dependencies": {
     "component-registry": "^2.0.0",

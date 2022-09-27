@@ -7,7 +7,7 @@ import babel from '@rollup/plugin-babel';
 import typescript from '@rollup/plugin-typescript';
 import scss from 'rollup-plugin-scss';
 import copy from 'rollup-plugin-copy';
-import replace from 'rollup-plugin-replace';
+import replace from '@rollup/plugin-replace';
 import packageJson from '../package.json';
 
 export default {
@@ -29,6 +29,7 @@ export default {
   acornInjectPlugins: [jsx()],
   plugins: [
     replace({
+      preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     resolve(),
