@@ -67,7 +67,7 @@ To debug your code, use the browser debugger. You might find that using Chrome g
 Unfortunately you can't debug the running code once imported to the Streamix Panel application. If something fails you need to figure it out in the development environment and then re-import the package to overwrite the old code.
 
 ### Developing Your Package
-Take a look at the (to be added) [sample packages](https://github.com/jhsware/TODO_FIX_LINK) for coding by example.
+Take a look at the [sample packages](https://github.com/jhsware/streamix-package-examples) for coding by example.
 
 The most basic implementation consists of three files found in the `src/` directory:
 - component.scss
@@ -90,7 +90,12 @@ We recommend that you use your package name as a base CSS-class to avoid conflic
   }
 }
 ```
-**You need to add all of these classes to your code.**
+**The base CSS-classes are added for you when you create you package.**
+
+#### Importan Note on Colours, Transparency and Bleed-Through
+Streamix Panel uses the ATEM mini luma-keying for transparency. This avoids annoying colour artifacts on smooth edges. The downside is that you can't use the darkest colours in your graphics without getting bleed-through.
+
+If you create a fullscreen graphics overlay, luma-keying is switched off.
 
 #### Component.tsx
 This is the Typescript source file. The .tsx extension allows you to write [JSX in Typescript](https://www.typescriptlang.org/docs/handbook/jsx.html). The code is written using the [library Inferno.js](https://www.infernojs.org/). Inferno.js is API-compatible with original React using stateless function components and stateful class components. Inferno does not support React hooks.
