@@ -47,7 +47,7 @@
     "component-registry": "^2.0.0",
     "inferno": "^8.0.0",
     "inferno-animation": "^8.0.0",
-    "streamix-package-editor": "^1.0.0-beta.1",
+    "streamix-package-editor": "^1.0.0-beta.6",
     "streamix-runtime": "^1.0.0-beta.1"
   },
   "devDependencies": {

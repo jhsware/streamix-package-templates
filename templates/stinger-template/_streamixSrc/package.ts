@@ -5,12 +5,12 @@ import '../src/component.scss';
 
 const Interface = createInterfaceClass('livemix');
 
-const IEffectUtil = new Interface({
-  name: 'IEffectUtil'
+const IStingerTransitionUtil = new Interface({
+  name: 'IStingerTransitionUtil'
 })
 
 new Utility({
-  implements: IEffectUtil,
+  implements: IStingerTransitionUtil,
   name: config.name,
   Component
 });
