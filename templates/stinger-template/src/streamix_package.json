@@ -1,9 +1,9 @@
 {
   "__type__": "StingerTransitionPackage",
   "__version__": "1",
-  "name": "stinger-poc",
-  "displayName": "Stinger PoC",
-  "description": "Perform a stinger transition.",
+  "name": "[name-of-your-package]",
+  "displayName": "[name-in-app]",
+  "description": "[description-in-app]",
   "transitionIn": 1500,
   "transitionOut": 1500,
   "form": {
