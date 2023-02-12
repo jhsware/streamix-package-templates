@@ -1,15 +1,16 @@
+@import '../../../node_modules/streamix-runtime/src/_utils.scss';
+
 .[name-of-your-package] {
-  --left: 1vw;
-  --top: 1vw;
-  --bottom: 1vw;
-  --bg: #0162af; // main background color
-  --fg: white; // Text color
-  // Color of bars:
-  --bg_Bar_1: orange;
-  --bg_Bar_2: white;
-  --bg_Bar_3: orange;
-  --bg_Bar_4: white;
-  --bg_Bar_5: orange;
+  --horiz: #{dsu(0.5)};
+  --vert: #{dsu(0.5)};
+  --primaryBg: cornflowerblue;
+  --primaryText: white;
+  --primaryFont: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --barBg_1: lightcoral;
+  --barBg_2: antiquewhite;
+  --barBg_3: lightcoral;
+  --barBg_4: antiquewhite;
+  --barBg_5: lightcoral;
 
   .Background {
     position: absolute;
@@ -25,52 +26,52 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--bg);
+    background-color: var(--primaryBg);
   }
 
   .Bar_1 {
     position: absolute;
-    top: 5rem;
+    top: dsu(1);
     left: 0;
-    width: 100rem;
-    height: 4rem;
-    background-color: var(--bg_Bar_1);
+    width: dsu(42);
+    height: dsu(2);
+    background-color: var(--barBg_1);
     transform: translateX(100%);
   }
   .Bar_2 {
     position: absolute;
-    top: 12rem;
+    top: dsu(5);
     left: 0;
-    width: 100rem;
-    height: 3rem;
-    background-color: var(--bg_Bar_2);
+    width: dsu(42);
+    height: dsu(2.5);
+    background-color: var(--barBg_2);
     transform: translateX(-100%);
   }
   .Bar_3 {
     position: absolute;
-    top: 18rem;
+    top: dsu(8);
     left: 0;
-    width: 100rem;
-    height: 4rem;
-    background-color: var(--bg_Bar_3);
+    width: dsu(42);
+    height: dsu(3);
+    background-color: var(--barBg_3);
     transform: translateX(100%);
   }
   .Bar_4 {
     position: absolute;
-    top: 26rem;
+    top: dsu(12);
     left: 0;
-    width: 100rem;
-    height: 6rem;
-    background-color: var(--bg_Bar_4);
+    width: dsu(42);
+    height: dsu(4);
+    background-color: var(--barBg_4);
     transform: translateX(-100%);
   }
   .Bar_5 {
     position: absolute;
-    top: 37rem;
+    top: dsu(16);
     left: 0;
-    width: 100rem;
-    height: 4rem;
-    background-color: var(--bg_Bar_5);
+    width: dsu(42);
+    height: dsu(2);
+    background-color: var(--barBg_5);
     transform: translateX(100%);
   }
   
@@ -82,13 +83,14 @@
     left: 50%;
     top: 50%;
 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: var(--primaryFont);
 
-    border-radius: 0.25rem;
+    border-radius: dsu(0.25);
     transform: translate(-50%, -50%) scale(1);
     transform-origin: center;
-    color: var(--fg);
+    color: var(--primaryText);
     text-shadow: 1px 1px black;
+    font-size: dsu(0.5);
 
 
     .inner {
@@ -96,20 +98,18 @@
       flex-direction: column;
       position: relative;
       box-sizing: border-box;
-      // background: #000;
       align-items: center;
-      padding: 0.5rem 1.5rem 0.3rem;
-      opacity: 1;
+      padding: 0.5em 1.5em 0.3em;
     }
 
     .name {
-      font-size: 5rem;
+      font-size: 4em;
       text-align: center;
       white-space: nowrap;
       margin-bottom: -2rem;
     }
     .title {
-      font-size: 3rem;
+      font-size: 3em;
       font-weight: 100;
       text-transform: uppercase;
       text-align: center;
@@ -117,7 +117,8 @@
     }
   }
 
-  // *** Animations ***
+  // Animation
+
   .BackgroundAnim {
     &-enter {
       transform: translateY(-1px);
@@ -206,5 +207,21 @@
         opacity: 1;
       }
     }
+  }
+}
+
+#streamix-opacity .[name-of-your-package] {
+  .Background {
+    background-color: transparent;
+  }
+
+  .Background > div {
+    opacity: 1;
+    color: white!important;
+    background-color: white!important;
+  }
+
+  .Title {
+    visibility: hidden;
   }
 }

@@ -1,8 +1,6 @@
 import { render } from "inferno";
-import { Editor } from "streamix-package-editor/dist/main.js";
+import { Editor } from "streamix-package-editor";
 import * as config from "../src/streamix_package.json";
-import "./package";
+import "../src/Component";
 
-if (process.env["NODE_ENV"] !== "production") {
-  render(<Editor config={config} />, document.getElementById('app'));
-}
+render(<Editor config={config} />, document.getElementById('app'));

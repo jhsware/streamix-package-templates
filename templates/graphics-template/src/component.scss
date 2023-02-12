@@ -1,27 +1,32 @@
+@import '../../../node_modules/streamix-runtime/src/_utils.scss';
+
 .[name-of-your-package] {
-  --horiz: 1vw;
-  --vert: 1vw;
-  --bg: #0162af;
-  --fg: white;
-  --font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --horiz: #{dsu(0.5)};
+  --vert: #{dsu(0.5)};
+  --primaryBg: #0162af;
+  --primaryText: white;
+  --primaryFont: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   .NameTag {
     --translate: translate(0%, 0%);
+
+    overflow: hidden;
 
     display: flex;
     box-sizing: border-box;
     margin: 0;
     position: absolute;
-    left: var(--horiz);
-    bottom: var(--vert);
+    left: opacityModeSafe(var(--horiz));
+    bottom: opacityModeSafe(var(--vert));
 
-    font-family: var(--font);
+    font-family: var(--primaryFont);
 
-    border-radius: 0.25rem;
+    border-radius: dpx(8px);
     transform-origin: bottom left;
     transform: var(--translate) scale(1);
     transform-origin: center;
-    background-color: var(--bg);
+    background-color: var(--primaryBg);
+    border: opacityBorderSize() solid var(--primaryBg);
 
     clip-path: polygon(0% 0%, 100% 0%, 120% 100%, 0% 100%);
 
@@ -30,61 +35,32 @@
       position: relative;
       box-sizing: border-box;
       // background: #000;
-      gap: 1rem;
+      gap: dpx(20px);
       align-items: baseline;
-      padding: 0.5rem 1.5rem 0.3rem;
+      padding: dpx(10px) dpx(30px);
       clip-path: polygon(0% 0%, 120% 0%, 100% 100%, 0% 100%);
     }
 
     .name {
-      font-size: 1.5rem;
-      margin-bottom: 0.25rem;
+      font-size: dpx(36px);
+      margin-bottom: dpx(4px);
       text-align: center;
       white-space: nowrap;
-      color: var(--fg);
+      color: var(--primaryText);
+    }
+    .title {
+      font-size: dpx(24px);
+      font-weight: 100;
+      text-transform: uppercase;
+      text-align: center;
+      padding-top: dpx(3px);
+      color: var(--primaryText);
     }
   }
+}
 
-
-  // *** Animations ***
-  .NameTagAnim {
-    &-enter,
-    &-leave-end { // Start and end with element collapsed and fully transparent
-      // opacity: 0.3; /* Can't use transparency with single GFX-feed */
-      // transform: translateX(calc(-100% - var(--horiz)));
-      clip-path: polygon(-1% 0%, -20% 0%, 0% 100%, -1% 100%);
-      
-      .inner {
-        opacity: 0;
-      }
-    }
-
-    &-enter-active {
-      transition: all 1.2s ease-in;
-      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
-
-      .inner {
-        transition: all 0.7s ease-out 0.5s;
-      }
-    }
-
-    &-leave-active {
-      transition: all 1.5s ease-out;
-      pointer-events: none; /* (optional) prevent hover to fire transition events causing early termination */
-
-      .inner {
-        transition: all .5s ease-out;
-      }
-    }
-
-    &-enter-end,
-    &-leave { // Animate to and from full height with full opacity
-      transform: translate(0, 0);
-      opacity: 1;
-
-      .inner {
-        opacity: 1;
-      }
-    }
-  }
+#streamix-opacity .[name-of-your-package] * {
+  opacity: 1;
+  color: white!important;
+  background-color: white!important;
 }

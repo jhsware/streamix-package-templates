@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
     "isolatedModules": true,
+    "experimentalDecorators": true,
     "resolveJsonModule": true,
     "moduleResolution": "Node",
     "jsx": "preserve",
