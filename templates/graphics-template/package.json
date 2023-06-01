@@ -7,9 +7,14 @@
     "url": ""
   },
   "scripts": {
-    "dev": "parcel --target dev",
-    "build:libs": "parcel build --config ./_streamixSrc/.prod_parcelrc --no-content-hash --no-cache --target package && npm run build:copy-assets",
-    "build:copy-assets": "mkdir -p package/$npm_package_name && cp -r assets/* package/$npm_package_name && cp src/streamix_package.json package",
+
+    "dev": "npm run dev:copy-assets && parcel --target dev",
+    "dev:copy-assets": "rm -rf dist/packages/$npm_package_name && mkdir -p dist/packages/$npm_package_name && cp -r assets/* dist/packages/$npm_package_name",
+    "build": "npm run build:libs",
+    "build:libs": "npm run build:init && parcel build --config ./_streamixSrc/.prod_parcelrc --no-content-hash --no-cache --target package && npm run build:move-files && npm run build:copy-assets",
+    "build:init": "rm -rf package/$npm_package_name && mkdir -p package/$npm_package_name",
+    "build:move-files": "mv package/*.* package/$npm_package_name",
+    "build:copy-assets": "mkdir -p package/$npm_package_name && cp -r assets/* package/$npm_package_name && cp src/streamix_package.json package/$npm_package_name",
     "test:type-check": "tsc --noEmit --skipLibCheck",
     "test:jest": "jest",
     "test:updateSnapshot": "jest --updateSnapshot"

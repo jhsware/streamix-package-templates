@@ -1,4 +1,4 @@
-@import '../../../node_modules/streamix-runtime/src/_utils.scss';
+@use '../../../node_modules/streamix-runtime/src/_utils' as *;
 
 .[name-of-your-package] {
   --horiz: #{dsu(0.5)};
@@ -210,7 +210,7 @@
   }
 }
 
-#streamix-opacity .[name-of-your-package] {
+#streamix-key-source .[name-of-your-package] {
   .Background {
     background-color: transparent;
   }
