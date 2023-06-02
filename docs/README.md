@@ -89,13 +89,24 @@ We recommend that you use your package name as a base CSS-class to avoid conflic
     /* Some styling */
   }
 }
+
+// Keying output to allow package to be displayed when
+// Streamix is set to opacity supporting mode (not yet released)
+#streamix-key-source .name-of-your-package {
+  & * {
+    opacity: 1;
+    color: white!important;
+    background-color: white!important;
+  }
+}
 ```
-**The base CSS-classes are added for you when you create you package.**
 
 #### Importan Note on Colours, Transparency and Bleed-Through
-Streamix Panel uses the ATEM mini luma-keying for transparency. This avoids annoying colour artifacts on smooth edges. The downside is that you can't use the darkest colours in your graphics without getting bleed-through.
+Streamix Panel main mode uses the ATEM mini luma-keying for transparency. This avoids annoying colour artifacts on smooth edges. The downside is that you can't use the darkest colours in your graphics without getting bleed-through.
 
 If you create a fullscreen graphics overlay, luma-keying is switched off.
+
+Streamix Panel has a secondary mode that supports translucent graphics by generating a keying layer. This is currently work in progress but we encourage you to make sure your packages support it from the start to avoid having to update them in the future. It is very simple, and normally only requires three lines of CSS (see exeample).
 
 #### Component.tsx
 This is the Typescript source file. The .tsx extension allows you to write [JSX in Typescript](https://www.typescriptlang.org/docs/handbook/jsx.html). The code is written using the [library Inferno.js](https://www.infernojs.org/). Inferno.js is API-compatible with original React using stateless function components and stateful class components. Inferno does not support React hooks.
